@@ -2810,23 +2810,10 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </code></pre></div>
 <h2 id="install-the-dotnet-sdk">Install the Dotnet SDK<a class="headerlink" href="#install-the-dotnet-sdk" title="Permanent link">#</a></h2>
 <p>Follow the steps in:
-- https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#register-the-microsoft-package-repository</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Get Ubuntu version</span>
-<span class="nb">declare</span><span class="w"> </span><span class="nv">repo_version</span><span class="o">=</span><span class="k">$(if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>lsb_release<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>lsb_release<span class="w"> </span>-r<span class="w"> </span>-s<span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">'(?&lt;=^VERSION_ID=).+'</span><span class="w"> </span>/etc/os-release<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">'"'</span><span class="p">;</span><span class="w"> </span><span class="k">fi)</span>
-
-<span class="c1"># Download Microsoft signing key and repository</span>
-wget<span class="w"> </span>https://packages.microsoft.com/config/ubuntu/<span class="nv">$repo_version</span>/packages-microsoft-prod.deb<span class="w"> </span>-O<span class="w"> </span>packages-microsoft-prod.deb
-
-<span class="c1"># Install Microsoft signing key and repository</span>
-sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>packages-microsoft-prod.deb
-
-<span class="c1"># Clean up</span>
-rm<span class="w"> </span>packages-microsoft-prod.deb
-
-<span class="c1"># Update packages</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>update
-
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>dotnet-sdk-8.0
+- https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&amp;pivots=os-linux-ubuntu-2204#ubuntu-2204</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:dotnet/backports
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>dotnet-sdk-9.0
 </code></pre></div>
 <h2 id="install-the-extensions">Install the extensions<a class="headerlink" href="#install-the-extensions" title="Permanent link">#</a></h2>
 <p>Follow the steps in:
