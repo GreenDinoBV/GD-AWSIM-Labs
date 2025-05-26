@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting-guide-for-awsim-and-autoware" class="md-skip">
+        <a href="#troubleshooting-guide-for-awsim-labs-and-autoware" class="md-skip">
           Skip to content
         </a>
       
@@ -2708,6 +2708,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#unity-editor-error-when-playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unity Editor Error when Playing
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3035,6 +3044,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#unity-editor-error-when-playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unity Editor Error when Playing
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3134,7 +3152,7 @@
   
 
 
-<div><h1 id="troubleshooting-guide-for-awsim-and-autoware">Troubleshooting Guide for AWSIM and Autoware<a class="headerlink" href="#troubleshooting-guide-for-awsim-and-autoware" title="Permanent link">#</a></h1>
+<div><h1 id="troubleshooting-guide-for-awsim-labs-and-autoware">Troubleshooting Guide for AWSIM Labs and Autoware<a class="headerlink" href="#troubleshooting-guide-for-awsim-labs-and-autoware" title="Permanent link">#</a></h1>
 <p>This document outlines common issues encountered when working with AWSIM and Autoware, along with suggested solutions.</p>
 <hr>
 <h2 id="1-general-plugin-and-runtime-issues">1. General Plugin and Runtime Issues<a class="headerlink" href="#1-general-plugin-and-runtime-issues" title="Permanent link">#</a></h2>
@@ -3218,6 +3236,31 @@ Check the appropriate log files:</p>
 <li><strong>Linux:</strong> <code>~/.config/unity3d/CompanyName/ProductName/Player.log</code></li>
 </ul>
 <p>More info: <a href="https://docs.unity3d.com/2021.1/Documentation/Manual/LogFiles.html">Unity Documentation - Log Files</a></p>
+<h3 id="unity-editor-error-when-playing">Unity Editor Error when Playing<a class="headerlink" href="#unity-editor-error-when-playing" title="Permanent link">#</a></h3>
+<p><strong>Error:</strong>
+</p><div class="highlight"><pre><span></span><code>RuntimeError: failed to get symbol 'rmw_init_options_init' due to Environment variable 'AMENT_PREFIX_PATH' is not set or empty, at ./src/functions.cpp:171, at ./src/rcl/init_options.c:75
+ROS2.Utils.CheckReturnEnum (System.Int32 ret) (at &lt;2034886caef046439cfa6ebcd9ed8cd7&gt;:0)
+ROS2.Ros2cs.Init () (at &lt;2034886caef046439cfa6ebcd9ed8cd7&gt;:0)
+ROS2.ROS2ForUnity..ctor () (at Assets/Ros2ForUnity/Scripts/ROS2ForUnity.cs:326)
+ROS2.ROS2UnityCore..ctor () (at Assets/Ros2ForUnity/Scripts/ROS2UnityCore.cs:55)
+AWSIM.SimulatorROS2Node.Initialize () (at Assets/AWSIM/Scripts/ROS/SimulatorROS2Node.cs:37)
+</code></pre></div>
+<p><strong>Solution:</strong></p>
+<p>Required environment variables:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
+<span class="nb">export</span><span class="w"> </span><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span>file:///home/add_your_username/cyclonedds.xml
+</code></pre></div>
+<ul>
+<li>If you are launching unityhub <strong>directly from a launcher</strong>,</li>
+<li>Make sure the CycloneDDS related 2 environment variables are set in the:<ul>
+<li><code>~/.profile</code> file.</li>
+<li>if <code>~/.bash_profile</code> or <code>~/.bash_login</code> exists, they will be executed instead of <code>~/.profile</code>.</li>
+</ul>
+</li>
+<li>If you are launching unityhub <strong>from a terminal</strong>,</li>
+<li>Make sure the CycloneDDS related 2 environment variables are set in the <code>~/.bashrc</code> file.</li>
+</ul>
+<p>More information can be found at <a href="https://autowarefoundation.github.io/autoware-documentation/main/installation/additional-settings-for-developers/network-configuration/dds-settings/">DDS settings for ROS 2 and Autoware</a>.</p>
 <hr>
 <h2 id="5-setup-and-compatibility-errors">5. Setup and Compatibility Errors<a class="headerlink" href="#5-setup-and-compatibility-errors" title="Permanent link">#</a></h2>
 <h3 id="initial-pose-does-not-match-automatically">Initial Pose Does Not Match Automatically<a class="headerlink" href="#initial-pose-does-not-match-automatically" title="Permanent link">#</a></h3>
