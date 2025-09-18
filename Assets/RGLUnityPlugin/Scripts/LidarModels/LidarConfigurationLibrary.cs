@@ -176,6 +176,19 @@ namespace RGLUnityPlugin
                     beamDivergence = 0.13f,
                     highResolutionModeEnabled = false,
                 }},
+
+                {LidarModel.UnitreeL2, () => new UniformRangeLidarConfiguration()
+                {
+                    laserArray = LaserArrayLibrary.UnitreeL2,
+                    horizontalResolution = 0.18f,
+                    laserArrayCycleTime = 0.1f,
+                    minHAngle = 0.0f,
+                    maxHAngle = 360.0f,
+                    noiseParams = LidarNoiseParams.TypicalNoiseParams,
+                    minRange = 0,
+                    maxRange = 200.0f,
+                    beamDivergence = 0.17f,
+                }},
             };
     }
 }
