@@ -2561,7 +2561,7 @@ GameObject:
   - component: {fileID: 2466750344197917035}
   - component: {fileID: 555331121072170284}
   m_Layer: 6
-  m_Name: TwizzyCustom
+  m_Name: TwizzyTemplate
   m_TagString: Ego
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
